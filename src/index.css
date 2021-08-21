@@ -7,7 +7,93 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  width: 100%;
+}
+
+/* ------------------------------Header ------------------------------------------------ */
+.header {
+  position: 'fixed';
+  z-index: 1;
+  width: '100%';
+  background-color: chartreuse;
+}
+
+.menu1 {
+
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.logo {
+  float: left;
+  width: 80px;
+  height: 80px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; 
+  margin: 5px;
+  background-image: url("./asset/logo.png");
+}
+.title {
+  line-height: 80px;
+  width: 60%;
+  height: 80px;
+  color: rgb(3, 73, 3);
+  text-align: center;
+  text-shadow: 5px;
+  font-size : 20px;
+}
+.ant-row-rtl .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+/* -----------------------------End-Header ------------------------------------------------ */
+
+#edit_product{
+  color: rgb(146, 97, 6);
+}
+
+#delete_product{
+  color: red;
+}
+
+.sort_product_dropdown{
+  float: right;
+  color: white;
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 40px;
+  background-color: rgb(33, 211, 9);
+}
+.ant-table-thead{
+  background-color: aqua !important;
+}
+.ant-table-cell{
+  border:1px;
+}
+
+.title-product {
+  color: red;
+}
+.ant-table-title{
+  color: darkgreen;
+  font-size: 20px;
+}
+
+.input-add {
+  margin-top: 20px;
+}
+
+
