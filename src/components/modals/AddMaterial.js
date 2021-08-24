@@ -93,7 +93,9 @@ function AddMaterial() {
       method: "post",
       url: "http://localhost:8084/v1/material",
       data: bodyFormData,
-      headers: {'Authorization': token},
+      headers: {'Authorization': token ,
+                'userId' : localStorage.getItem("idUser")
+              },
     })
       .then((response) => {
         console.log(response.data)

@@ -48,7 +48,9 @@ function EditSupplier(props) {
         method: "put",
         url: "http://localhost:8084/v1/supplier",
         data: bodyFormData,
-        headers: {'Authorization': token},
+        headers: {'Authorization': token,
+        'userId' : localStorage.getItem("idUser")
+      },
       })
         .then((response) => {
           console.log(response.data);

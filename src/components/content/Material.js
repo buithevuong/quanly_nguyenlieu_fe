@@ -10,6 +10,7 @@ import { DeleteOutlined, ReloadOutlined } from "@ant-design/icons";
 const { Search } = Input;
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem("tokenAuthen");
+axios.defaults.headers.common['userId'] = localStorage.getItem("idUser");
 
 function confirm(e) {
   axios
