@@ -3,21 +3,14 @@ import "antd/dist/antd.css";
 import "./../../index.css";
 import { Avatar, Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { useHistory } from "react-router";
 import { useState } from "react";
-import { Form, Input, Checkbox, message } from "antd";
+import { Form, Input, message } from "antd";
 import axios from "axios";
 import Header from "./Header";
 import Footer from "./footer";
 
 function User() {
-  const history = useHistory();
   const [changePass, setChangePass] = useState(false);
-
-  function logoutHandle() {
-    history.push("/login");
-    localStorage.clear();
-  }
 
   function changePassHandle() {
     if (changePass === false) {

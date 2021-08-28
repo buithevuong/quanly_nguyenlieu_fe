@@ -33,10 +33,11 @@ function EditMaterial(props) {
         headers: {'Authorization': token},
       })
       .then((res) => {
+        
         const getName = [];
 
         res.data.map((i) => {
-          const value = i.name;
+          const value = i;
           getName.push({ value });
         });
 

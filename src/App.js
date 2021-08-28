@@ -12,10 +12,18 @@ import {
 import Registration from "./components/layout/Registration";
 import User from "./components/layout/User";
 import ForgotPassword from "./components/layout/ForgotPassword";
+import { useHistory } from "react-router";
 
 
 function App() {
-    
+  const history = useHistory();
+
+  if(localStorage.getItem("tokenAuthen") === undefined){
+    history.push("/login");
+  }
+  // if(localStorage.getItem("tokenAuthen") === null){
+  //   history.push("/login");
+  // }
   return (
 
     <>

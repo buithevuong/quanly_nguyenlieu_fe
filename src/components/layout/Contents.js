@@ -24,7 +24,7 @@ function Contents() {
 
   const routes = [
     {
-      path: "/product",
+      path: ["/product" , "/"],
       exact: true,
       slider: () =>   <Sider className="site-layout-background" width={170}>
       <Menu

@@ -151,7 +151,7 @@ function EditSupplier(props) {
               },
               {
                 message: "Sdt không đúng!",
-                pattern : /((09|03|07|08|05)+([0-9]{8})\b)/g,
+                pattern : /((09|06|04|02|01|03|07|08|05)+([0-9]{8})\b)/g,
               },
             ]}
           >
