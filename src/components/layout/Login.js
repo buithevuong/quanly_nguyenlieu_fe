@@ -20,12 +20,19 @@ function Login() {
           })
           .then(function (response) {
             var authen = response.data;
-            message.success("Đăng nhập thành công");
+            console.log(authen);
+            if(authen.jwt !== undefined){
+              message.success("Đăng nhập thành công");
       
-            localStorage.setItem("idUser", authen.id);
-            localStorage.setItem("email" , authen.email);
-            localStorage.setItem("tokenAuthen" , "Bearer "+authen.jwt);
-            history.push("/product");
+              localStorage.setItem("idUser", authen.id);
+              localStorage.setItem("email" , authen.email);
+              localStorage.setItem("tokenAuthen" , "Bearer "+authen.jwt);
+              history.push("/product");
+            }else {
+              message.error("Đăng nhập thất bại")
+            }
+            
+            
           })
           .catch(function (error) {
             console.log(error);

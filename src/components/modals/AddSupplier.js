@@ -1,9 +1,5 @@
 import React from "react";
-import { Button, Modal, Input , Upload, Form, message } from "antd";
-import {
-  UserOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
+import { Button, Modal, Input , Form, message } from "antd";
 import { useState } from "react";
 import axios from "axios";
 
@@ -12,7 +8,7 @@ function AddSupplier() {
 
   const showModal = () => {
     setIsModalVisible(true);
-    const token = localStorage.getItem("tokenAuthen");
+    //const token = localStorage.getItem("tokenAuthen");
   };
 
   const handleOk = () => {

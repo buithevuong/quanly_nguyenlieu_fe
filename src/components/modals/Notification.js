@@ -1,9 +1,8 @@
 import React from "react";
-import { Button, Badge, Card } from "antd";
-import { NotificationOutlined } from "@ant-design/icons";
+import { Button, Badge, Card, message } from "antd";
+import { NotificationOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { red } from "@material-ui/core/colors";
 
 function Notification() {
   const [isDisplay, setIsDisplay] = useState("none");
@@ -28,22 +27,33 @@ function Notification() {
     var value = pageCurrent;
     console.log(pageCurrent);
     if (value > 0) {
-    setPageCurrent(value-1);
-}
+      setPageCurrent(value - 1);
+    }
   };
 
   const nextHandle = () => {
     var value = pageCurrent;
     console.log(pageCurrent);
-    
-      setPageCurrent(value+1);
-    
+
+    setPageCurrent(value + 1);
   };
 
   function clickCheckedNoti() {
-      console.log("checked")
+    console.log("checked");
   }
 
+  function setCheckAll() {
+    const token = localStorage.getItem("tokenAuthen");
+    axios
+      .put(`http://localhost:8084/v1/alert`, {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        setIsChecked(0);
+        message.success("Đã đọc tất cả");
+      })
+      .catch((error) => console.log(error));
+  }
   useEffect(() => {
     const token = localStorage.getItem("tokenAuthen");
     axios
@@ -52,7 +62,7 @@ function Notification() {
           page: pageCurrent,
           size: numberData,
         },
-        headers: {'Authorization': token},
+        headers: { Authorization: token },
       })
       .then((res) => {
         setIsChecked(res.data.totalNotCheck);
@@ -71,7 +81,14 @@ function Notification() {
       </Badge>
 
       <Card
-        title="THÔNG BÁO"
+        title={
+          <div>
+            THÔNG BÁO{" "}
+            <Button type="primary" style={{ float: "right" }} onClick={setCheckAll}>
+              <CheckCircleOutlined />
+            </Button>
+          </div>
+        }
         style={{
           width: 320,
           display: isDisplay,
@@ -83,13 +100,18 @@ function Notification() {
       >
         {noti.map((i) => {
           return (
-            <div style={{ backgroundColor: i.isChecked===1?"#f5be58":"#f7d38f" }} onClick={clickCheckedNoti}>
+            <div
+              style={{
+                backgroundColor: i.isChecked === 1 ? "#f5be58" : "#f7d38f",
+              }}
+              onClick={clickCheckedNoti}
+            >
               <h4 style={{ color: "black" }}>{i.title}</h4>
               <p style={{ color: i.color }}>
                 [{i.materialName}] : {i.content}
               </p>
               <p style={{ color: "black" }}>
-               Tại lúc : {new Date(i.createdAt).toLocaleString()}
+                Tại lúc : {new Date(i.createdAt).toLocaleString()}
               </p>
             </div>
           );

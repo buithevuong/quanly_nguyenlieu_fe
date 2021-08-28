@@ -1,8 +1,13 @@
 import React from 'react'
 import 'antd/dist/antd.css';
 import './../../index.css';
-import { Form, Input, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+import { Form, Input, Select, Button , message ,DatePicker } from 'antd';
+import { useHistory } from "react-router";
+import axios from "axios";
+
 const { Option } = Select;
+
+
 
 const formItemLayout = {
     labelCol: {
@@ -38,12 +43,48 @@ const tailFormItemLayout = {
 
 
 function Registration() {
+
+    const history = useHistory();
+
+
+    const back = () => {
+        history.push("/login");
+      }
+    const onFinish = (values) => {
+        var localDate = values.birth._d;
+        console.log(localDate);
+        console.log(values);
+        axios
+          .post("http://localhost:8084/registration", {
+              name : values.nickname,
+              gender : values.gender,
+              birth : values.birth.localDate,
+              email : values.email,
+              phone : values.phone,
+            password: values.password,
+          })
+          .then(function (response) {
+              console.log(response.data)
+              if(response.data.code === 200 ){
+                message.success("Đăng kí thành công");
+              }else {
+                message.error("Đăng kí thất bại");
+              }
+          })
+          .catch(function (error) {
+            console.log(error);
+            message.error("Đăng kí thất bại");
+          });
+      };
+
+
     return (
         <div style={{ paddingLeft: 300, paddingTop: 50 ,paddingBottom:230 , backgroundColor:'#84fc03'}}>
             <h1>Đăng kí</h1>
             <Form
                 {...formItemLayout}
                 name="register"
+                onFinish={onFinish}
                 scrollToFirstError
                 style={{ width: 600 }}
             >
@@ -151,9 +192,22 @@ function Registration() {
                         <Option value="female">Nữ</Option>
                     </Select>
                 </Form.Item>
-
+                <Form.Item
+                    name="birth"
+                    label="Ngày sinh"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please select birth!',
+                        },
+                    ]}
+                >
+                    <DatePicker/>
+                </Form.Item>
+                
 
                 <Form.Item {...tailFormItemLayout}>
+                <Button style={{marginRight:50}} onClick={back}>Back</Button>
                     <Button type="primary" htmlType="submit">
                         Đăng kí
                     </Button>

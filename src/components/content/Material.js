@@ -213,6 +213,7 @@ function Material(props) {
 
   const [typeMaterial, setTypeMaterial] = useState("");
 
+
   const list_sort = (
     <Menu onClick={(e) => setTypeMaterial(e.key)}>
       <Menu.Item key="">Tất cả</Menu.Item>
@@ -222,6 +223,8 @@ function Material(props) {
       <Menu.Item key="Hoa quả">Hoa quả</Menu.Item>
     </Menu>
   );
+
+ 
 
   function onchangePage(page) {
     setPageCurrent(page);

@@ -100,7 +100,7 @@ function EditProduct(props) {
       </Button>
 
       <Modal
-        title="Sửa nguyên liệu"
+        title="Sửa sản phẩm"
         visible={isModalVisible}
         // okText='Thêm'
         // cancelText='Hủy'
